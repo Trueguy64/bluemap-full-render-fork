@@ -1,6 +1,6 @@
 # bluemap-full-render
 
-Made with [node-canvas](https://github.com/Automattic/node-canvas), [headless-gl](https://github.com/stackgl/headless-gl) and [regl](https://github.com/regl-project/regl) with WebGL shaders [stolen from bluemap repository](https://github.com/BlueMap-Minecraft/BlueMap/blob/master/common/webapp/src/js/map/lowres/LowresVertexShader.js) 
+Made with [headless-gl](https://github.com/stackgl/headless-gl) and [regl](https://github.com/regl-project/regl) with WebGL shaders [stolen from bluemap repository](https://github.com/BlueMap-Minecraft/BlueMap/blob/master/common/webapp/src/js/map/lowres/LowresVertexShader.js) 
 
 ## Usage
 
@@ -10,9 +10,12 @@ Made with [node-canvas](https://github.com/Automattic/node-canvas), [headless-gl
 4. Execute `npm install` (check requirements here: [headless-gl](https://github.com/stackgl/headless-gl?tab=readme-ov-file#system-dependencies))
 5. Execute `npm run build`
 6. Download `/bluemap/web/maps/overworld/tiles/1` to some folder and rename to `bluemap-[date]`
-7. Execute `node out/index.js ./path/to/bluemap-[date] ./my-output-directory` where first argument is path to the folder you downloaded in step 6 and second argument is path to the output directory
+7. Execute `node out/single.js ./path/to/bluemap-[date] ./map.png` where first argument is path to the folder you downloaded in step 6 and second argument is the output png
 
-This will output map parts with resolution 1:1 block and size of 16384х16384 pixels that you can stitch together to get a final ultra big map.
+This streams one png row by row, so it works for maps far bigger than RAM. Options:
+
+- `--scale N` blocks per pixel (default 1, box-filtered downscale)
+- `--bounds=minX,maxX,minZ,maxZ` tile range to include (default: every tile), e.g. to cut off stray far-away tiles
 
 ## Bluemap API
 

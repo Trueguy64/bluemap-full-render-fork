@@ -37,3 +37,6 @@ input.png
 output.png
 
 test
+# local tiles and renders
+/1
+/Export
